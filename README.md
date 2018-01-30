@@ -8,7 +8,7 @@ The following instructions will allow you to run the code on your local machine 
 
 ### Prerequisites
 
-Install [Python] (https://python.org)
+Install [Python] (https://www.python.org/)
 Install requests module
 ```
 pip install requests
