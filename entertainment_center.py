@@ -15,6 +15,10 @@ def get_movie_info(user_movie):
 
     Returns:
         A list containing all information required to create an instance of media.Movie
+
+    Raise:
+        IndexError: occurs when the movie the user entered cannot be found and thus
+        the list contains no elements
     """
     search_url = "https://api.themoviedb.org/3/search/movie?api_key={0}&language=en-US&" \
                  "query={1}&page=1&include_adult=true"
@@ -35,7 +39,10 @@ def get_movie_info(user_movie):
 movie_list = []
 for i in range(5):
     movie = input("Please enter one of your favorite movies:\n")
-    movie = get_movie_info(movie)
+    try:
+        movie = get_movie_info(movie)
+    except IndexError as e:
+        movie = ["", "", "", "", ""] # perhaps make default movie with dummy data
     movie_list.append(media.Movie(movie[0], movie[1], movie[2], movie[3], movie[4]))
 
 fresh_tomatoes.open_movies_page(movie_list)
