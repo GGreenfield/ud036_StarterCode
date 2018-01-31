@@ -4,9 +4,6 @@ import requests
 import keys
 
 
-# get movie to search and perform request GET
-# grab movie title, year, poster path, trailer link
-# make movie instance
 def get_movie_info(user_movie):
     """Retrieves useful information for a movie from themoviedb.org
 
@@ -39,10 +36,13 @@ def get_movie_info(user_movie):
 movie_list = []
 for i in range(5):
     movie = input("Please enter one of your favorite movies:\n")
-    try:
-        movie = get_movie_info(movie)
-    except IndexError as e:
-        movie = ["", "", "", "", ""] # perhaps make default movie with dummy data
+    while True:
+        try:
+            movie = get_movie_info(movie)
+            break
+        except IndexError as e:
+            movie = input("That movie cannot be found, try again:\n")
+
     movie_list.append(media.Movie(movie[0], movie[1], movie[2], movie[3], movie[4]))
 
 fresh_tomatoes.open_movies_page(movie_list)
